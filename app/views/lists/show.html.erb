@@ -1,0 +1,23 @@
+<h1>Show list</h1>
+
+<p> <%= @list.name %></p>
+
+<p><strong>Movies</strong></p>
+<ul class="list-group">
+  <% @lists.bookmark.each do |bookmark| %>
+    <li class="list-group-item">
+      <%= bookmark.comment %>
+    </li>
+    <li class="list-group-item">
+    Rating ⭐️ : <%= movie.rating %>
+    </li>
+    <br>
+  <% end %>
+</ul>
+
+<h2>Add a movie to the list</h2>
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.input :comment %>
+    <%= f.association :movie %>
+    <%= f.button :submit %>
+  <% end %>
