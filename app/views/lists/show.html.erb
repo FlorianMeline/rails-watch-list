@@ -1,15 +1,20 @@
-<h1>Show list</h1>
-
-<p> <%= @list.name %></p>
+<h1><%= @list.name %></h1>
 
 <p><strong>Movies</strong></p>
 <ul class="list-group">
-  <% @lists.bookmark.each do |bookmark| %>
+  <% @list.movies.each do |movie| %>
+  <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
     <li class="list-group-item">
-      <%= bookmark.comment %>
+      <%= movie.title %>
     </li>
     <li class="list-group-item">
     Rating ⭐️ : <%= movie.rating %>
+    </li>
+    <li class="list-group-item">
+    Comment : <%= bookmark.comment %>
+    </li>
+    <li class="list-group-item">
+    Poster : <%= image_tag movie.poster_url %>
     </li>
     <br>
   <% end %>
@@ -21,3 +26,5 @@
     <%= f.association :movie %>
     <%= f.button :submit %>
   <% end %>
+
+<%= link_to "Back to menu", root_path %>
